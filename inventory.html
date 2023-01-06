@@ -1,12 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory of Wands</title>
+
+    <style>
+        html * {
+            font-family: luminari, "Didot", 'Times New Roman', serif;
+        }
+
+        body {
+            background-color: rgb(250, 242, 231);
+        }
+
+        form {
+            border: solid 2px lightgrey;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        form:focus-within {
+            border-color: orange;
+        }
+
+        tr:hover {
+            background-color: #F0F0F0;
+        }
+
+        .container {
+            margin: 0 auto;
+            max-width: 1280px;
+            width: 90%;
+        }
+    </style>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
+
 <body>
-    
+    <!-- Actual page content! -->
+    <div class="container">
+        <div class="section" id="stuffList">
+            <h1>Wands</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Core</th>
+                        <th>Wood</th>
+                        <th>Length</th>
+                        <th>Flexibility</th>
+                        <th>...</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>Dragon Heartstring</td>
+                        <td>Black Walnut</td>
+                        <td>9 inches</td>
+                        <td>Surprisingly swishy</td>
+                        <td>
+                            <a class="btn-small waves-effect waves-light" href="det.html">
+                                Info/Edit
+                            </a>
+                            <a class="btn-small waves-effect waves-light red">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Phoenix Feather</td>
+                        <td>Sandalwood</td>
+                        <td>
+                            <a class="btn-small waves-effect waves-light" href="det.html">
+                                <i class="material-icons right">reparo</i>
+                                Info/Edit
+                            </a>
+                            <a class="btn-small waves-effect waves-light red">
+                                <i class="material-icons right">delete</i>
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section" id="stuffAdd">
+            <h2>Welcome new wands:</h2>
+            <form>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <label for="nameInput">Item Name:</label>
+                        <input type="text" name="name" id="nameInput" class="validate" data-length="32" required>
+                    </div>
+                    <div class="input-field col s6">
+                        <label for="quantityInput">Item Quantity:</label>
+                        <input type="number" name="quantity" id="quantityInput" value=1 required>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit">
+                    <!-- <i class="material-icons right">send</i> -->
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- initialize Materialize elements -->
+    <!-- <script> M.AutoInit();</script> -->
 </body>
+
 </html>
