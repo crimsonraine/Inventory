@@ -7,15 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diagon Alley Wands Shoppe: Ollivander's</title>
 
-    <style>
-        html * {
-            font-family: luminari, "Didot", 'Times New Roman', serif;
-        }
-
-        body {
-            background-color: rgb(250, 242, 231);
-        }
-    </style>
+    <link rel="stylesheet" href="home.css">
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -25,33 +17,73 @@
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Passions+Conflict&display=swap" rel="stylesheet">
 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Passions+Conflict&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container">
-        <center>
-            <h1>Welcome to Ollivanders' Wand Shoppe!</h1>
-            <h5>Ollivanders: Makers of Fine Wands since 382 BC</h5>
-        </center>
-<br>
-        <body>Curious... very curious... don't worry! I remember every wand I've ever sold. We've gone through a
+    <div class="row card-panel blue-grey lighten-5">
+        <div class="col s7 push-s6"">
+            
+            <div class=" center vertical-center">
+            <h5 align=" center" class="vertical-center"> Proud Makers of Fine Wands since 382 BC</h5>
+            <a class="btn vertical-center" href="inventory.html">
+                Discover Wands!
+                <span class="material-symbols-outlined">
+                    bolt
+                </span>
+            </a>
+        </div>
+    </div>
+    <div class="col s5 pull-s6">
+        <h1 align="right">Welcome to Ollivanders' Wand Shoppe!</h1>
+    </div>
+    </div>
+
+    <br>
+
+    <div class="center">
+        <img src="images/ollivander.jpg" alt="Aesthetic Ollivander Pinterest Ink Drawing"
+            title="Ollivander Welcomes Thee" width='50%' height='50%'>
+    </div>
+
+    <br>
+
+    <div class="row card-panel blue-grey lighten-5">
+
+        <body align="left">Curious... very curious... don't worry! I remember every wand I've ever sold. We've gone
+            through a
             rebranding, and are keeping better records.</body>
+        <br>
+
+        <body class="quote">- G. Ollivander</body>
 
     </div>
     <div class="center">
-        <a class="btn" href="inventory.html">
+        <img src="images/shop.jpg" alt="Ollivander's Shop Pic" title="Wands on Shelves" width='80%' height='80%'>
+        <br>
+        <a class="btn vertical-center" href="inventory.html">
             Discover Wands!
             <span class="material-symbols-outlined">
                 bolt
             </span>
         </a>
     </div>
-    <br>
-    <div class="center">
-        <img src="images/ollivander.jpg" alt="Aesthetic Ollivander Pinterest Ink Drawing"
-            title="Ollivander Welcomes Thee" width='50%' height='50%'>
-    </div>
+
+    <!-- Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- initialize Materialize elements -->
+    <script> M.AutoInit();</script>
 </body>
 
 </html>

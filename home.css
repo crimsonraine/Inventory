@@ -1,0 +1,32 @@
+h1 {
+    font-family: 'Passions Conflict', cursive;
+    font-size: 40px;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+    font-family: luminari, "Didot", 'Times New Roman', serif;
+    font-size: 20px;
+}
+
+div {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.row {
+    width: 100%;
+}
+
+.quote {
+    font-family: 'Moon Dance', cursive;
+    font-size: 36px;
+}
+
+.vertical-center {
+    position:relative;
+    top: 50%;
+    transform: translateY(25%);
+    /* credits to DrupalFever on stack overflow for this css style for vertical-center */
+}
