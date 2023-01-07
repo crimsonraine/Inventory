@@ -1,0 +1,26 @@
+html * {
+    font-family: luminari, "Didot", 'Times New Roman', serif;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+}
+
+form {
+    border: solid 2px lightgrey;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+form:focus-within {
+    border-color: orange;
+}
+
+tr:hover {
+    background-color: #F0F0F0;
+}
+
+.container {
+    margin: 0 auto;
+    width: 100%;
+}
