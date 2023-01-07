@@ -7,11 +7,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wand Details</title>
 
-    <a ref = "stylesheet" href = "warehouse.css">
+    <style>
+        form {
+            border: solid 2px lightgrey;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        form:focus-within {
+            border-color: rgb(0, 0, 0);
+        }
+
+        tr:hover {
+            background-color: #F0F0F0;
+        }
+
+        h1 {
+            font-family: 'Passions Conflict', cursive;
+            font-size: 40px;
+        }
+
+        body {
+            font-family: luminari, "Didot", 'Times New Roman', serif;
+            font-size: 20px;
+        }
+    </style>
+
+    <!-- fonts just in case -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Passions+Conflict&display=swap" rel="stylesheet">
 
     <!-- Materialize CSS and Icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Materialize CSS and Icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- bolt -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -23,30 +64,37 @@
 <body>
     <div class="container">
         <div class="section flow-text" id="stuffDetail">
-            <div class="center">
-                <h1>Wand details:</h1>
+            <div class="center row card-panel blue-grey lighten-5">
+                <h1>Wand Details:</h1>
+
                 <body>Remember that the wand chooses the wizard! 5 galleons each!</body>
             </div>
 
             <a class="btn-small waves-effect waves-light" href="inventory.html">
-                <i class="material-icons left">arrow_back</i>Return to Shoppe Front
+                <i class="material-icons left">arrow_back</i>
+                Return to Wands Shelf
             </a>
             <table>
                 <tr>
-                    <th>Wand:</th>
-                    <td>Widgets</td>
+                    <th>Core:</th>
+                    <td>Dragon Heartstring</td>
                 </tr>
                 <tr>
-                    <th>Quantity:</th>
-                    <td>5</td>
-
+                    <th>Wood:</th>
+                    <td>Black Walnut</td>
                 </tr>
                 <tr>
-                    <th>Description:</th>
+                    <th>Length:</th>
+                    <td>9 inches</td>
+                </tr>
+                <tr>
+                    <th>Flexibility:</th>
+                    <td>Surprisingly swishy</td>
+                </tr>
+                <tr>
+                    <th>Notes: </th>
                     <td>
-                        Widgets are cool!
-                        You can do ... so many...
-                        different things... with them...
+                        Not a fit for many of the past clients so far. Fitting for a fuller personality. -G.O.
                     </td>
                 </tr>
             </table>
@@ -54,12 +102,12 @@
 
         <div class="section" id="stuffControls">
             <a class="btn-large waves-effect waves-light orange left modal-trigger" href="#stuffEdit">
-                <i class="material-icons right">edit</i>
-                Edit
+                <i class="material-icons right">assistant</i>
+                Info/Edit/Reparo
             </a>
-            <a class="btn-large waves-effect waves-light red right">
+            <a class="btn-large waves-effect waves-light red right" style = "color:black">
                 <i class="material-icons right">delete</i>
-                Delete
+                Deleto
             </a>
         </div>
 
@@ -68,32 +116,54 @@
 
             <div class="modal-content">
 
-                <h2>Edit item:</h2>
-                <form>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <label for="nameInput">Item Name:</label>
-                            <input type="text" name="name" id="nameInput" class="validate" data-length="32" required>
+                <div class="section" id="stuffAdd">
+                    <h2 class="card-panel blue-grey lighten-5">If the wand sees fit:</h2>
+                    <form>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <label for="coreInput">Core:</label>
+                                <input type="text" name="core" id="coreInput" class="validate" data-length="32"
+                                    required>
+                            </div>
+                            <div class="input-field col s6">
+                                <label for="woodInput">Wood</label>
+                                <input type="text" name="wood" id="woodInput" class="validate" data-length="32"
+                                    required>
+                            </div>
+                            <div class="input-field col s6">
+                                <label for="lengthInput">Length in Inches:</label>
+                                <input type="number" name="length" id="lengthInput" value=9 required>
+                                <!-- 9 inches is rather within the range of wand lengths in HP -->
+                            </div>
+                            <div class="input-field col s6">
+                                <label for="flexInput">Flexibility:</label>
+                                <input type="text" name="flex" id="flexInput" class="validate" data-length="32"
+                                    required>
+                            </div>
                         </div>
-                        <div class="input-field col s6">
-                            <label for="quantityInput">Item Quantity:</label>
-                            <input type="number" name="quantity" id="quantityInput" value=1 required>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="notesInput">Notes:</label>
+                                <input type="text" name="notes" id="notesInput" class="validate" data-length="32"
+                                    required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <label for="descriptionInput">Item Description:</label>
-                            <input type="text" name="description" id="descriptionInput" data-length="100">
+
+                        <div class="modal-footer">
+                            <button class="btn waves-effect waves-light" type="submit">
+                                <!-- <i class="material-icons right">send</i> -->
+                                Say Incantation
+                                <i class="material-symbols-outlined right">
+                                    bolt
+                                </i>
+                            </button>
+                            <button class="modal-close waves-effect waves-green btn-flat"  style = "color:gray">
+                                <i class="material-icons right">leak_remove</i>
+                                Didn't mean to cast spell
+                            </button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn waves-effect waves-light " type="submit">
-                            <i class="material-icons right">send</i>
-                            Submit
-                        </button>
-                        <button class="modal-close waves-effect waves-green btn-flat">Never Mind</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
 
         </div>
