@@ -8,6 +8,8 @@ const port = 8080;
 // define middleware that logs all incoming requests
 // express applies middleware and handlers 
 app.use(logger("dev"));
+// define middleware that serves static resources in the public directory
+app.use(express.static(__dirname + '/public'));
 
 // define a route for the default home page
 app.get( "/", ( req, res ) => {
