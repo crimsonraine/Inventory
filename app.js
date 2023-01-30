@@ -44,10 +44,10 @@ const read_item_sql = `
 `
 app.get( "/inventory/det/:id", ( req, res, next ) => {
     db.execute(read_item_sql, [req.params.id], (error, results) => {
-        if (error)
-            res.status(500).send(error); //Internal Server Error
-        else
-            res.send(results[0]); // results is still an array
+        if (error) res.status(500).send(error); //Internal Server Error
+        else if (results.length == 0)
+            res.status(404).send(`No item found with id = "${req.params.id}"` ); // NOT FOUND
+        else res.send(results[0]); // results is still an array
     });
 });
 
