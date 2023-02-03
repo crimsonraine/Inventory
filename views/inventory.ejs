@@ -39,41 +39,24 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr>
-                        <td>Dragon Heartstring</td>
-                        <td>Black Walnut</td>
-                        <td>9 inches</td>
-                        <td>Surprisingly swishy</td>
-                        <td>
-                            <a class="btn-small waves-effect waves-light" href="inventory/det">
-                                <i class = "material-icons right">assistant</i>
-                                Info/Edit/Reparo
-                            </a>
-                            <a class="btn-small waves-effect waves-light red" style = "color:black">
-                                <i class="material-icons right">delete</i>
-                                Deleto
-                            </a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Phoenix Feather</td>
-                        <td>Sandalwood</td>
-                        <td>11.5 inches</td>
-                        <td>Brittle</td>
-                        <td>
-                            <a class="btn-small waves-effect waves-light" href="/inventory/det">
-                                <i class = "material-icons right">assistant</i>
-                                Info/Edit/Reparo
-                            </a>
-                            <a class="btn-small waves-effect waves-light red" style = "color:black">
-                                <i class="material-icons right">delete</i>
-                                Deleto
-                            </a>
-                        </td>
-                    </tr>
-
+                    <% for (let i = 0; i < results.length; i++) { %>
+                        <tr>
+                            <td><%= results[i].core %></td>
+                            <td><%= results[i].wood %></td>
+                            <td><%= results[i].length %></td>
+                            <td><%= results[i].flexibility %></td>
+                            <td>
+                                <a class="btn-small waves-effect waves-light" href=<%= "/inventory/det/" + results[i].id %>>
+                                    <i class = "material-icons right">assistant</i>
+                                    Info/Edit/Reparo
+                                </a>
+                                <a class="btn-small waves-effect waves-light red" style = "color:black">
+                                    <i class="material-icons right">delete</i>
+                                    Deleto
+                                </a>
+                            </td>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
         </div>
