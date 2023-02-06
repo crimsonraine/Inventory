@@ -16,6 +16,7 @@ const create_stuff_table_sql = `
         wood VARCHAR(150) NOT NULL,
         length DOUBLE NULL,
         flexibility VARCHAR(150) NULL,
+        notes VARCHAR(150) NULL,
         PRIMARY KEY (id)
     );
 `
@@ -25,13 +26,15 @@ db.execute(create_stuff_table_sql);
 
 const insert_stuff_table_sql = `
     INSERT INTO wands 
-        (core, wood, length, flexibility) 
+        (core, wood, length, flexibility, notes)
     VALUES 
-        (?, ?, ?, ?);
+        (?, ?, ?, ?, ?);
 `
-db.execute(insert_stuff_table_sql, ['Dragon Heartstring', 'Black Walnut', '9', 'Surprisingly swishy']);
+db.execute(insert_stuff_table_sql, ['Dragon Heartstring', 'Black Walnut', '9', 'Surprisingly swishy', 'Not a fit for many of the past clients so far. Fitting for a fuller personality. - G.O.']);
 
-db.execute(insert_stuff_table_sql, ['Phoenix Feather', 'Sandalwood', '11.5', 'Brittle']);
+db.execute(insert_stuff_table_sql, ['Phoenix Feather', 'Sandalwood', '11.5', 'Brittle', "It's a classic, although quite hard to tame and personalise. A very rare core type. - G.O."]);
+
+db.execute(insert_stuff_table_sql, ['Unicorn Hair', 'Rowan', '11.5', 'Brittle', "Renders most defensive charms strong and difficult to break by way of the wood. - G.O."]);
 
 const read_stuff_table_sql = "SELECT * FROM wands";
 

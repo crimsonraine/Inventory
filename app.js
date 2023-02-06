@@ -24,7 +24,7 @@ app.get( "/", ( req, res ) => {
 // define a route for the stuff inventory page
 const read_stuff_all_sql = `
     SELECT 
-        id, core, wood, length, flexibility
+        id, core, wood, length, flexibility, notes
     FROM
         wands
 `
@@ -42,7 +42,7 @@ app.get( "/inventory", ( req, res ) => {
 // define a route for the item detail page
 const read_item_sql = `
     SELECT 
-    core, wood, length, flexibility
+    core, wood, length, flexibility, notes
     FROM
         wands
     WHERE
