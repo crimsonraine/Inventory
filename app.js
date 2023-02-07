@@ -64,6 +64,24 @@ app.get( "/inventory/det/:id", ( req, res ) => {
     });
 });
 
+// define a route for item DELETE
+const delete_item_sql = `
+    DELETE 
+    FROM
+        wands
+    WHERE
+        id = ?
+`
+app.get("/inventory/det/:id/delete", ( req, res ) => {
+    db.execute(delete_item_sql, [req.params.id], (error, results) => {
+        if (error)
+            res.status(500).send(error); //Internal Server Error
+        else {
+            res.redirect("/inventory");
+        }
+    });
+})
+
 // start the server
 app.listen( port, () => {
     console.log(`App server listening on ${ port }. (Go to http://localhost:${ port })` );
