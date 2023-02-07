@@ -117,33 +117,33 @@
 
                 <div class="section" id="stuffAdd">
                     <h2 class="card-panel blue-grey lighten-5">If the wand sees fit:</h2>
-                    <form>
+                    <form method="post" action="/inventory/det/<%= id %>"> <!-- default action is the page's URL --> 
                         <div class="row">
                             <div class="input-field col s6">
                                 <label for="coreInput">Core:</label>
-                                <input type="text" name="core" id="coreInput" class="validate" data-length="32"
+                                <input type="text" name="core" id="coreInput" class="validate" data-length="32" value="<%= core %>"
                                     required>
                             </div>
                             <div class="input-field col s6">
                                 <label for="woodInput">Wood</label>
-                                <input type="text" name="wood" id="woodInput" class="validate" data-length="32"
+                                <input type="text" name="wood" id="woodInput" class="validate" data-length="32" value="<%= wood %>"
                                     required>
                             </div>
                             <div class="input-field col s6">
                                 <label for="lengthInput">Length in Inches:</label>
-                                <input type="number" name="length" id="lengthInput" value=9 required>
+                                <input type="number" name="length" id="lengthInput" value=9 value="<%= length %>" required>
                                 <!-- 9 inches is rather within the range of wand lengths in HP -->
                             </div>
                             <div class="input-field col s6">
                                 <label for="flexInput">Flexibility:</label>
-                                <input type="text" name="flex" id="flexInput" class="validate" data-length="32"
+                                <input type="text" name="flex" id="flexInput" class="validate" data-length="32" value="<%= flexibility %>"
                                     required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="notesInput">Notes:</label>
-                                <input type="text" name="notes" id="notesInput" class="validate" data-length="32"
+                                <input type="text" name="notes" id="notesInput" class="validate" data-length="32" value="<%= notes %>"
                                     required>
                             </div>
                         </div>

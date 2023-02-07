@@ -103,6 +103,29 @@ app.post("/inventory", ( req, res ) => {
     });
 })
 
+// define a route for item UPDATE
+const update_item_sql = `
+    UPDATE
+        wands
+    SET
+        core = ?,
+        wood = ?,
+        length = ?,
+        flexibility = ?,
+        notes = ?
+    WHERE
+        id = ?
+`
+app.post("/inventory/det/:id", ( req, res ) => {
+    db.execute(update_item_sql, [req.body.core, req.body.wood, req.body.length, req.body.flex, req.body.notes, req.params.id], (error, results) => {
+        if (error)
+            res.status(500).send(error); //Internal Server Error
+        else {
+            res.redirect(`/inventory/det/${req.params.id}`);
+        }
+    });
+})
+
 // start the server
 app.listen( port, () => {
     console.log(`App server listening on ${ port }. (Go to http://localhost:${ port })` );
