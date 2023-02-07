@@ -15,6 +15,8 @@ app.set( "view engine", "ejs" );
 app.use(logger("dev"));
 // define middleware that serves static resources in the public directory
 app.use(express.static(__dirname + '/public'));
+// Configure Express to parse URL-encoded POST request bodies (traditional forms)
+app.use( express.urlencoded({ extended: false }) );
 
 // define a route for the default home page
 app.get( "/", ( req, res ) => {
@@ -57,8 +59,9 @@ app.get( "/inventory/det/:id", ( req, res ) => {
             res.status(404).send(`No item found with id = "${req.params.id}"` ); // NOT FOUND
         else {
             let data = results[0]; // results is still an array
+            data['id'] = req.params.id; // for some reason, my id would've been undefined otherwise; this solves it - Kim
             // data's object structure: 
-            //  { item: ___ , quantity:___ , description: ____ }
+            //  { item: ___ , quantity:___ , description: ____ } - figured out above line of code form this dict
             res.render('det', data);
         }
     });
@@ -78,6 +81,24 @@ app.get("/inventory/det/:id/delete", ( req, res ) => {
             res.status(500).send(error); //Internal Server Error
         else {
             res.redirect("/inventory");
+        }
+    });
+})
+
+// define a route for item Create
+const create_item_sql = `
+INSERT INTO wands 
+    (core, wood, length, flexibility, notes)
+VALUES 
+    (?, ?, ?, ?, ?);
+`
+app.post("/inventory", ( req, res ) => {
+    db.execute(create_item_sql, [req.body.core, req.body.wood, req.body.length, req.body.flex, req.body.notes], (error, results) => {
+        if (error)
+            res.status(500).send(error); //Internal Server Error
+        else {
+            //results.insertId has the primary key (id) of the newly inserted element.
+            res.redirect(`/inventory/det/${results.insertId}`);
         }
     });
 })
