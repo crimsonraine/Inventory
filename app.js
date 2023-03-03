@@ -12,8 +12,9 @@ app.use(helmet({
       directives: {
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'", 'cdnjs.cloudflare.com'],
-        styleSrc: ["'self'", 'cdnjs.cloudflare.com', 'fonts.googleapis.com'],
-        fontSrc: ["'self'", 'fonts.googleapis.com']
+        styleSrc: ["'self'", 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com',
+    'fonts.googleapis.com/css2?family=Moon+Dance&display=swap', 'fonts.googleapis.com/css2?family=Passions+Conflict&display=swap'],
+        fontSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com']
       }
     }
   })); 
