@@ -1,4 +1,4 @@
-const db = require('./db/db_connection');
+const db = require('./db/db_pool');
 const logger = require("morgan");
 
 //set up the server
