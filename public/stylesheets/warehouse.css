@@ -12,6 +12,11 @@ form {
     border-radius: 5px;
 }
 
+h1 {
+    font-family: 'Passions Conflict', cursive;
+    font-size: 70px;
+}
+
 form:focus-within {
     border-color: orange;
 }
