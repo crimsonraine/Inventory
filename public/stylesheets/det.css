@@ -1,0 +1,23 @@
+form {
+    border: solid 2px lightgrey;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+form:focus-within {
+    border-color: rgb(0, 0, 0);
+}
+
+tr:hover {
+    background-color: #F0F0F0;
+}
+
+h1 {
+    font-family: 'Passions Conflict', cursive;
+    font-size: 40px;
+}
+
+body {
+    font-family: luminari, "Didot", 'Times New Roman', serif;
+    font-size: 20px;
+}

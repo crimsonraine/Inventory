@@ -10,9 +10,8 @@ const app = express();
 app.use(helmet({
     contentSecurityPolicy: {
       directives: {
-        // something here is not giving the css to det.ejs??
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", 'cdnjs.cloudflare.com', 'cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'],
+        scriptSrc: ["'self'", 'cdnjs.cloudflare.com', 'cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js', "/autoinit.js"],
         styleSrc: ["'self'", 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com',
         'fonts.googleapis.com/css2?family=Moon+Dance&display=swap', 'fonts.googleapis.com/css2?family=Passions+Conflict&display=swap'],
         fontSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com',
