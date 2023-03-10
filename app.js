@@ -7,6 +7,10 @@ const { requiresAuth } = require('express-openid-connect');
 const express = require("express");
 const helmet = require("helmet");
 const app = express();
+
+const dotenv = require('dotenv');
+dotenv.config();
+
 //Configure Express to use certain HTTP headers for security
 //Explicitly set the CSP to allow certain sources
 app.use(helmet({
@@ -25,10 +29,10 @@ app.use(helmet({
 const config = {
     authRequired: false,
     auth0Logout: true,
-    secret: 'a long, randomly-generated string stored in env',
-    baseURL: 'http://localhost:8080',
-    clientID: 'i2faEKprEhWceWugTOdwksBBRqMKDNw2',
-    issuerBaseURL: 'https://dev-rcbo7an8pg7847wt.us.auth0.com'
+    secret: process.env.AUTH0_SECRET,
+    baseURL: process.env.AUTH0_BASE_URL,
+    clientID: process.env.AUTH0_CLIENT_ID,
+    issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL
 };
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
