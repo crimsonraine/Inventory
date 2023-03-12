@@ -11,6 +11,7 @@
     <!-- Materialize CSS and Icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -51,11 +52,11 @@
                             <td><%= results[i].flexibility %></td>
                             <!-- won't place descriptions here, only on det page -->
                             <td>
-                                <a class="btn-small waves-effect waves-light" href=<%= "/inventory/det/" + results[i].id %>>
-                                    <i class = "material-icons right">assistant</i>
+                                <a class="btn-small waves-effect waves-light teal darken-4" href=<%= "/inventory/det/" + results[i].id %>>
+                                    <i class = "material-icons right">brush</i>
                                     Info/Edit/Reparo
                                 </a>
-                                <a class="btn-small waves-effect waves-light red" href="/inventory/det/<%= results[i].id %>/delete" style = "color:black">
+                                <a class="btn-small waves-effect waves-light red darken-4" href="/inventory/det/<%= results[i].id %>/delete" style = "color:black">
                                     <i class="material-icons right">delete</i>
                                     Deleto
                                 </a>
@@ -94,7 +95,7 @@
                         <input type="text" name="notes" id="notesInput" class="validate" data-length="32" required>
                     </div>
                 </div>
-                <button class="btn waves-effect waves-light" type="submit">
+                <button class="btn waves-effect waves-light teal darken-4" type="submit">
                     <!-- <i class="material-icons right">send</i> -->
                     Say Incantation
                     <i class="material-symbols-outlined right">
@@ -107,18 +108,19 @@
     <div class="center">
         <img src="/images/shop.jpg" alt="Ollivander's Shop Pic" title="Wands on Shelves" width='60%' height='80%'>
         <br>
-        <a class="btn vertical-center" href="/">
+        <a class="btn vertical-center teal darken-4" href="/">
             Back to Shop Front!
             <i class="material-symbols-outlined right">
                 bolt
             </i>
         </a>
     </div>
+
     <!-- Materialize JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!-- initialize Materialize elements -->
-    <script> M.AutoInit();</script>
+    <script src = "/autoinit.js"></script>
 </body>
 
 </html>

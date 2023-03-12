@@ -1,4 +1,4 @@
-h1 {
+h1, .brand-logo {
     font-family: 'Passions Conflict', cursive;
     font-size: 40px;
 }
@@ -26,4 +26,8 @@ div {
 
 .vertical-center {
     position:relative;
+}
+
+nav, .nav-wrapper{
+    background-color: rgb(2, 4, 43);
 }
