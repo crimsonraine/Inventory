@@ -11,6 +11,9 @@ body {
 
 div {
     margin: auto;
+}
+
+.imageformat {
     width: 50%;
     padding: 10px;
 }
@@ -24,9 +27,9 @@ div {
     font-size: 36px;
 }
 
-.vertical-center {
+/* .vertical-center {
     position:relative;
-}
+} */
 
 nav, .nav-wrapper{
     background-color: rgb(2, 4, 43);

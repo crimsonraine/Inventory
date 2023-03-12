@@ -12,12 +12,16 @@ tr:hover {
     background-color: #F0F0F0;
 }
 
-h1 {
+h1, .brand-logo {
     font-family: 'Passions Conflict', cursive;
-    font-size: 40px;
+    font-size: 70px;
 }
 
 body {
     font-family: luminari, "Didot", 'Times New Roman', serif;
     font-size: 20px;
+}
+
+nav, .nav-wrapper{
+    background-color: rgb(2, 4, 43);
 }

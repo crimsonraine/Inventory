@@ -12,7 +12,7 @@ form {
     border-radius: 5px;
 }
 
-h1 {
+h1, .brand-logo {
     font-family: 'Passions Conflict', cursive;
     font-size: 70px;
 }
@@ -28,4 +28,8 @@ tr:hover {
 .container {
     margin: 0 auto;
     width: 100%;
+}
+
+nav, .nav-wrapper{
+    background-color: rgb(2, 4, 43);
 }

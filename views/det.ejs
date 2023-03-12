@@ -39,6 +39,30 @@
 </head>
 
 <body>
+    <!-- Nav bar -->
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo vertical-center">Ollivander's</a>
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <!-- Main nav, hidden for small screens -->
+                <ul id="desktop-nav" class="right hide-on-med-and-down">
+                    <li><a href="/"><i class="material-icons left">location_city</i>Home</a></li>
+                    <li><a href="/inventory"><i class="material-icons left">dashboard</i>Shelves</a></li> <!-- second option: dns -->
+                    <li><a href="/login" class="btn teal darken-4 vertical-center">Login</a></li>
+                    <li><a href="/logout" class="btn red darken-4 vertical-center">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Mobile nav menu, shown when menu button clicked -->
+        <ul id="mobile-nav" class="sidenav">
+            <li><a href="/"><i class="material-icons left">home</i>Home</a></li>
+            <li><a href="/inventory"><i class="material-icons left">list</i>Inventory</a></li>
+            <li><a href="/login" class="btn blue">Login</a></li>
+            <li><a href="/logout" class="btn red">Logout</a></li>
+        </ul>
+    </header>
+
     <div class="container">
         <div class="section flow-text" id="stuffDetail">
             <div class="center row card-panel blue-grey lighten-5">
@@ -47,7 +71,7 @@
                 <body>Remember that the wand chooses the wizard! 5 galleons each!</body>
             </div>
 
-            <a class="btn-small waves-effect waves-light" href="/inventory">
+            <a class="btn-small waves-effect waves-light teal darken-4" href="/inventory">
                 <i class="material-icons left">arrow_back</i>
                 Return to Wands Shelf
             </a>
@@ -76,11 +100,11 @@
         </div>
 
         <div class="section" id="stuffControls">
-            <a class="btn-small waves-effect waves-light left modal-trigger" href="#stuffEdit">
+            <a class="btn-small waves-effect waves-light left modal-trigger teal darken-4" href="#stuffEdit">
                 <i class="material-icons right">brush</i>
                 Info/Edit/Reparo
             </a>
-            <a class="btn-small waves-effect waves-light red right" href="/inventory/det/<%= id %>/delete"  style = "color:black">
+            <a class="btn-small waves-effect waves-light red darken-4 right" href="/inventory/det/<%= id %>/delete"  style = "color:black">
                 <i class="material-icons right">delete</i>
                 Deleto
             </a>
