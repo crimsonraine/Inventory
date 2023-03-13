@@ -17,6 +17,7 @@ const create_stuff_table_sql = `
         length DOUBLE NULL,
         flexibility VARCHAR(150) NULL,
         notes VARCHAR(150) NULL,
+        userid VARCHAR(50) NULL,
         PRIMARY KEY (id)
     );
 `

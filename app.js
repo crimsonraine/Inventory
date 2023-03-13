@@ -43,6 +43,7 @@ app.use((req, res, next) => {
     res.locals.user = req.oidc.user;
     next();
 })
+// use the user's email (req.oidc.user.email) as a unique identifier
 
 app.get('/profile', requiresAuth(), (req, res) => {
     res.send(JSON.stringify(req.oidc.user));
@@ -137,12 +138,12 @@ app.get("/inventory/det/:id/delete", requiresAuth(), (req, res) => {
 // define a route for item Create
 const create_item_sql = `
 INSERT INTO wands 
-    (core, wood, length, flexibility, notes)
+    (core, wood, length, flexibility, notes, userid)
 VALUES 
-    (?, ?, ?, ?, ?);
+    (?, ?, ?, ?, ?, ?);
 `
 app.post("/inventory", requiresAuth(), (req, res) => {
-    db.execute(create_item_sql, [req.body.core, req.body.wood, req.body.length, req.body.flex, req.body.notes], (error, results) => {
+    db.execute(create_item_sql, [req.body.core, req.body.wood, req.body.length, req.body.flex, req.body.notes, req.oidc.user.email], (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
         else {
