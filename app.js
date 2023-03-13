@@ -80,7 +80,7 @@ const read_stuff_all_sql = `
         wands
 `
 // define a route for the stuff inventory page
-app.get("/inventory", (req, res) => {
+app.get("/inventory", requiresAuth(), (req, res) => {
     db.execute(read_stuff_all_sql, (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
@@ -100,7 +100,7 @@ const read_item_sql = `
         id = ?
 `
 // define a route for the item detail page
-app.get("/inventory/det/:id", (req, res) => {
+app.get("/inventory/det/:id", requiresAuth(), (req, res) => {
     db.execute(read_item_sql, [req.params.id], (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
@@ -124,7 +124,7 @@ const delete_item_sql = `
     WHERE
         id = ?
 `
-app.get("/inventory/det/:id/delete", (req, res) => {
+app.get("/inventory/det/:id/delete", requiresAuth(), (req, res) => {
     db.execute(delete_item_sql, [req.params.id], (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
@@ -141,7 +141,7 @@ INSERT INTO wands
 VALUES 
     (?, ?, ?, ?, ?);
 `
-app.post("/inventory", (req, res) => {
+app.post("/inventory", requiresAuth(), (req, res) => {
     db.execute(create_item_sql, [req.body.core, req.body.wood, req.body.length, req.body.flex, req.body.notes], (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
@@ -165,7 +165,7 @@ const update_item_sql = `
     WHERE
         id = ?
 `
-app.post("/inventory/det/:id", (req, res) => {
+app.post("/inventory/det/:id", requiresAuth(), (req, res) => {
     db.execute(update_item_sql, [req.body.core, req.body.wood, req.body.length, req.body.flex, req.body.notes, req.params.id], (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
