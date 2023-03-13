@@ -79,10 +79,12 @@ const read_stuff_all_sql = `
         id, core, wood, length, flexibility, notes
     FROM
         wands
+    WHERE
+        userid = ?
 `
 // define a route for the stuff inventory page
 app.get("/inventory", requiresAuth(), (req, res) => {
-    db.execute(read_stuff_all_sql, (error, results) => {
+    db.execute(read_stuff_all_sql, [req.oidc.user.email], (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
         else {
@@ -99,10 +101,12 @@ const read_item_sql = `
         wands
     WHERE
         id = ?
+    AND
+        userid = ?
 `
 // define a route for the item detail page
 app.get("/inventory/det/:id", requiresAuth(), (req, res) => {
-    db.execute(read_item_sql, [req.params.id], (error, results) => {
+    db.execute(read_item_sql, [req.params.id, req.oidc.user.email], (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
         else if (results.length == 0)
@@ -124,9 +128,11 @@ const delete_item_sql = `
         wands
     WHERE
         id = ?
+    AND
+        userid = ?
 `
 app.get("/inventory/det/:id/delete", requiresAuth(), (req, res) => {
-    db.execute(delete_item_sql, [req.params.id], (error, results) => {
+    db.execute(delete_item_sql, [req.params.id, req.oidc.user.email], (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
         else {
@@ -165,9 +171,11 @@ const update_item_sql = `
         notes = ?
     WHERE
         id = ?
+    AND
+        userid = ?
 `
 app.post("/inventory/det/:id", requiresAuth(), (req, res) => {
-    db.execute(update_item_sql, [req.body.core, req.body.wood, req.body.length, req.body.flex, req.body.notes, req.params.id], (error, results) => {
+    db.execute(update_item_sql, [req.body.core, req.body.wood, req.body.length, req.body.flex, req.body.notes, req.params.id, req.oidc.user.email], (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
         else {
