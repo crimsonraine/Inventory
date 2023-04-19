@@ -188,3 +188,5 @@ app.post("/inventory/det/:id", requiresAuth(), (req, res) => {
 app.listen(port, () => {
     console.log(`App server listening on ${port}. (Go to http://localhost:${port})`);
 });
+
+// npx nodemon app.js (node package executer)
