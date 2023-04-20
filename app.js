@@ -73,18 +73,29 @@ app.get("/", (req, res) => {
     res.render('index');
 });
 
-// define a route for the stuff inventory page
-const read_stuff_all_sql = `
+const read_crafters_all_sql = `
     SELECT 
-        id, core, wood, length, flexibility, notes
+        crafter_id, CONCAT(crafter_first_name, ' ', crafter_last_name) AS name
+    FROM
+        crafters
+`
+
+// define a route for the wand inventory page
+const read_inventory_all_sql = `
+    SELECT 
+        id, core, wood, length, flexibility, notes,
+        CONCAT(crafter_first_name, ' ', crafter_last_name) AS name, wands.crafter_id
     FROM
         wands
+    JOIN crafters
+        ON crafters.crafter_id = wands.crafter_id
     WHERE
         userid = ?
+    ORDER BY crafters.crafter_last_name;
 `
 // define a route for the stuff inventory page
 app.get("/inventory", requiresAuth(), (req, res) => {
-    db.execute(read_stuff_all_sql, [req.oidc.user.email], (error, results) => {
+    db.execute(read_inventory_all_sql, [req.oidc.user.email], (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
         else {

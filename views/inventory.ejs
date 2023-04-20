@@ -70,6 +70,7 @@
                         <th>Wood</th>
                         <th>Length</th>
                         <th>Flexibility</th>
+                        <th>Crafter</th>
                         <th>...</th>
                     </tr>
                 </thead>
@@ -80,6 +81,7 @@
                             <td><%= results[i].wood %></td>
                             <td><%= results[i].length %></td>
                             <td><%= results[i].flexibility %></td>
+                            <td><%= results[i].name %></td>
                             <!-- won't place descriptions here, only on det page -->
                             <td>
                                 <a class="btn-small waves-effect waves-light teal darken-4" href=<%= "/inventory/det/" + results[i].id %>>

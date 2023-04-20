@@ -116,15 +116,15 @@ db.execute(create_stuff_table_sql);
 
 const insert_stuff_table_sql = `
     INSERT INTO wands 
-        (core, wood, length, flexibility, notes, crafter_id)
+        (core, wood, length, flexibility, notes, crafter_id, userid)
     VALUES 
-        (?, ?, ?, ?, ?, ?);
+        (?, ?, ?, ?, ?, ?, ?);
 `
-db.execute(insert_stuff_table_sql, ['Dragon Heartstring', 'Black Walnut', '9', 'Surprisingly swishy', 'Not a fit for many of the past clients so far. Fitting for a fuller personality. - G.O.', 1]);
+db.execute(insert_stuff_table_sql, ['Dragon Heartstring', 'Black Walnut', '9', 'Surprisingly swishy', 'Not a fit for many of the past clients so far. Fitting for a fuller personality. - G.O.', 1, 'kimni25@bergen.org']);
 
-db.execute(insert_stuff_table_sql, ['Phoenix Feather', 'Sandalwood', '11.5', 'Brittle', "It's a classic, although quite hard to tame and personalise. A very rare core type. - G.O.", 2]);
+db.execute(insert_stuff_table_sql, ['Phoenix Feather', 'Sandalwood', '11.5', 'Brittle', "It's a classic, although quite hard to tame and personalise. A very rare core type. - G.O.", 2, 'kimni25@bergen.org']);
 
-db.execute(insert_stuff_table_sql, ['Unicorn Hair', 'Rowan', '11.5', 'Brittle', "Renders most defensive charms strong and difficult to break by way of the wood. - G.O.", 3]);
+db.execute(insert_stuff_table_sql, ['Unicorn Hair', 'Rowan', '11.5', 'Brittle', "Renders most defensive charms strong and difficult to break by way of the wood. - G.O.", 3, 'kimni25@bergen.org']);
 
 const read_stuff_table_sql = "SELECT * FROM wands";
 
