@@ -115,7 +115,7 @@ app.get("/inventory", requiresAuth(), (req, res) => {
 // define a route for the item detail page
 const read_item_sql = `
     SELECT 
-    core, wood, length, flexibility, notes,
+    id, core, wood, length, flexibility, notes,
     CONCAT(crafter_first_name, ' ', crafter_last_name) AS name, wands.crafter_id
     FROM
         wands
@@ -134,7 +134,7 @@ app.get("/inventory/det/:id", requiresAuth(), (req, res) => {
         else if (results.length == 0)
             res.status(404).send(`No item found with id = "${req.params.id}"`); // NOT FOUND
         else {
-            results[0]['id'] = req.params.id; // for some reason, my id would've been undefined otherwise; this solves it - Kim
+            // results[0]['id'] = req.params.id; // for some reason, my id would've been undefined otherwise; this solves it - Kim
             // data's object structure: 
             //  { item: ___ , quantity:___ , description: ____ } - figured out above line of code form this dict
             // res.render('det', data); // before drop down
@@ -142,7 +142,7 @@ app.get("/inventory/det/:id", requiresAuth(), (req, res) => {
                 if (error2)
                     res.status(500).send(error2);
                 else {
-                    let data = {wand_info: results, crafters_list: results2};
+                    let data = {wand_info: results[0], crafters_list: results2};
                     res.render('det', data);
                 }
             });
@@ -197,7 +197,7 @@ const update_item_sql = `
         wood = ?,
         length = ?,
         flexibility = ?,
-        wands.crafter_id = ?,
+        crafter_id = ?,
         notes = ?
     WHERE
         id = ?
@@ -205,7 +205,7 @@ const update_item_sql = `
         userid = ?
 `
 app.post("/inventory/det/:id", requiresAuth(), (req, res) => {
-    db.execute(update_item_sql, [req.body.core, req.body.wood, req.body.length, req.body.flex, req.body.notes, req.params.id, req.oidc.user.email], (error, results) => {
+    db.execute(update_item_sql, [req.body.core, req.body.wood, req.body.length, req.body.flex, req.body.crafter, req.body.notes, req.params.id, req.oidc.user.email], (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
         else {

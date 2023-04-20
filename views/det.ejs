@@ -84,23 +84,27 @@
             <table>
                 <tr>
                     <th>Core:</th>
-                    <td><%= core %></td>
+                    <td><%= wand_info.core %></td>
                 </tr>
                 <tr>
                     <th>Wood:</th>
-                    <td><%= wood %></td>
+                    <td><%= wand_info.wood %></td>
                 </tr>
                 <tr>
                     <th>Length:</th>
-                    <td><%= length %></td>
+                    <td><%= wand_info.length %></td>
                 </tr>
                 <tr>
                     <th>Flexibility:</th>
-                    <td><%= flexibility %></td>
+                    <td><%= wand_info.flexibility %></td>
+                </tr>
+                <tr>
+                    <th>Crafter:</th>
+                    <td><%= wand_info.name %></td>
                 </tr>
                 <tr>
                     <th>Notes: </th>
-                    <td><%= notes %></td>
+                    <td><%= wand_info.notes %></td>
                 </tr>
             </table>
         </div>
@@ -110,7 +114,7 @@
                 <i class="material-icons right">brush</i>
                 Info/Edit/Reparo
             </a>
-            <a class="btn-small waves-effect waves-light red darken-4 right" href="/inventory/det/<%= id %>/delete"  style = "color:black">
+            <a class="btn-small waves-effect waves-light red darken-4 right" href="/inventory/det/<%= wand_info.id %>/delete"  style = "color:black">
                 <i class="material-icons right">delete</i>
                 Deleto
             </a>
@@ -123,44 +127,47 @@
 
                 <div class="section" id="stuffAdd">
                     <h2 class="card-panel blue-grey lighten-5">If the wand sees fit:</h2>
-                    <form method="post" action="/inventory/det/<%= id %>"> <!-- default action is the page's URL --> 
+                    <form method="post" action="/inventory/det/<%= wand_info.id %>"> <!-- default action is the page's URL --> 
                         <div class="row">
                             <div class="input-field col s6">
                                 <label for="coreInput">Core:</label>
-                                <input type="text" name="core" id="coreInput" class="validate" data-length="32" value="<%= core %>"
+                                <input type="text" name="core" id="coreInput" class="validate" data-length="32" value="<%= wand_info.core %>"
                                     required>
                             </div>
                             <div class="input-field col s6">
                                 <label for="woodInput">Wood</label>
-                                <input type="text" name="wood" id="woodInput" class="validate" data-length="32" value="<%= wood %>"
+                                <input type="text" name="wood" id="woodInput" class="validate" data-length="32" value="<%= wand_info.wood %>"
                                     required>
                             </div>
                             <div class="input-field col s6">
                                 <label for="lengthInput">Length in Inches:</label>
-                                <input type="number" name="length" id="lengthInput" value=9 value="<%= length %>" required>
+                                <input type="number" name="length" id="lengthInput" value=9 value="<%= wand_info.length %>" required>
                                 <!-- 9 inches is rather within the range of wand lengths in HP -->
                             </div>
                             <div class="input-field col s6">
                                 <label for="flexInput">Flexibility:</label>
-                                <input type="text" name="flex" id="flexInput" class="validate" data-length="32" value="<%= flexibility %>"
+                                <input type="text" name="flex" id="flexInput" class="validate" data-length="32" value="<%= wand_info.flexibility %>"
                                     required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <select id="subjectInput" name="crafter" required>
-                                    <option value="" disabled selected>Edit wandmaker</option>
+                                <select id="crafterInput" name="crafter" required>
+                                    <option value="" disabled> Edit wandmaker </option>
                                     <% for (let i = 0; i < crafters_list.length; i++) { %>
-                                        <option value=<%=crafters_list[i].crafter_id %>><%= crafters_list[i].name %></option>
+                                        <option value=<%=crafters_list[i].crafter_id %> 
+                                            <% if (wand_info.crafter_id == crafters_list[i].crafter_id) { %> selected <% } %> >
+                                            <%= crafters_list[i].name %></option>
                                     <% } %>
                                 </select>
-                                <label for="subjectInput">Crafter:</label>
+                                <label for="crafterInput">Crafter:</label>
                             </div>
                         </div>
+                        
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="notesInput">Notes:</label>
-                                <input type="text" name="notes" id="notesInput" class="validate" data-length="32" value="<%= notes %>"
+                                <input type="text" name="notes" id="notesInput" class="validate" data-length="32" value="<%= wand_info.notes %>"
                                     required>
                             </div>
                         </div>
