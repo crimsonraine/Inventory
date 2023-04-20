@@ -115,9 +115,12 @@ app.get("/inventory", requiresAuth(), (req, res) => {
 // define a route for the item detail page
 const read_item_sql = `
     SELECT 
-    core, wood, length, flexibility, notes
+    core, wood, length, flexibility, notes,
+    CONCAT(crafter_first_name, ' ', crafter_last_name) AS name, wands.crafter_id
     FROM
         wands
+    JOIN crafters
+        ON crafters.crafter_id = wands.crafter_id
     WHERE
         id = ?
     AND
@@ -131,11 +134,18 @@ app.get("/inventory/det/:id", requiresAuth(), (req, res) => {
         else if (results.length == 0)
             res.status(404).send(`No item found with id = "${req.params.id}"`); // NOT FOUND
         else {
-            let data = results[0]; // results is still an array
-            data['id'] = req.params.id; // for some reason, my id would've been undefined otherwise; this solves it - Kim
+            results[0]['id'] = req.params.id; // for some reason, my id would've been undefined otherwise; this solves it - Kim
             // data's object structure: 
             //  { item: ___ , quantity:___ , description: ____ } - figured out above line of code form this dict
-            res.render('det', data);
+            // res.render('det', data); // before drop down
+            db.execute(read_crafters_all_sql, (error2, results2) => {
+                if (error2)
+                    res.status(500).send(error2);
+                else {
+                    let data = {wand_info: results, crafters_list: results2};
+                    res.render('det', data);
+                }
+            });
         }
     });
 });
@@ -187,6 +197,7 @@ const update_item_sql = `
         wood = ?,
         length = ?,
         flexibility = ?,
+        wands.crafter_id = ?,
         notes = ?
     WHERE
         id = ?
@@ -198,6 +209,14 @@ app.post("/inventory/det/:id", requiresAuth(), (req, res) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
         else {
+            // db.execute(read_crafters_all_sql, (error2, results2) => {
+            //     if (error2)
+            //         res.status(500).send(error2);
+            //     else {
+            //         let data = {wands_list: results, crafters_list: results2};
+            //         res.render(`/inventory/det/${req.params.id}`, data); 
+            //     }
+            // });
             res.redirect(`/inventory/det/${req.params.id}`);
         }
     });
