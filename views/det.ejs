@@ -147,6 +147,17 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="input-field col s6">
+                                <select id="subjectInput" name="crafter" required>
+                                    <option value="" disabled selected>Edit wandmaker</option>
+                                    <% for (let i = 0; i < crafters_list.length; i++) { %>
+                                        <option value=<%=crafters_list[i].crafter_id %>><%= crafters_list[i].name %></option>
+                                    <% } %>
+                                </select>
+                                <label for="subjectInput">Crafter:</label>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="input-field col s12">
                                 <label for="notesInput">Notes:</label>
                                 <input type="text" name="notes" id="notesInput" class="validate" data-length="32" value="<%= notes %>"
