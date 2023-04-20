@@ -75,20 +75,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (let i = 0; i < results.length; i++) { %>
+                    <% for (let i = 0; i < wands_list.length; i++) { %>
                         <tr>
-                            <td><%= results[i].core %></td>
-                            <td><%= results[i].wood %></td>
-                            <td><%= results[i].length %></td>
-                            <td><%= results[i].flexibility %></td>
-                            <td><%= results[i].name %></td>
+                            <td><%= wands_list[i].core %></td>
+                            <td><%= wands_list[i].wood %></td>
+                            <td><%= wands_list[i].length %></td>
+                            <td><%= wands_list[i].flexibility %></td>
+                            <td><%= wands_list[i].name %></td>
                             <!-- won't place descriptions here, only on det page -->
                             <td>
-                                <a class="btn-small waves-effect waves-light teal darken-4" href=<%= "/inventory/det/" + results[i].id %>>
+                                <a class="btn-small waves-effect waves-light teal darken-4" href=<%= "/inventory/det/" + wands_list[i].id %>>
                                     <i class = "material-icons right">brush</i>
                                     Info/Edit/Reparo
                                 </a>
-                                <a class="btn-small waves-effect waves-light red darken-4" href="/inventory/det/<%= results[i].id %>/delete" style = "color:black">
+                                <a class="btn-small waves-effect waves-light red darken-4" href="/inventory/det/<%= wands_list[i].id %>/delete" style = "color:black">
                                     <i class="material-icons right">delete</i>
                                     Deleto
                                 </a>
@@ -119,6 +119,17 @@
                     <div class="input-field col s6">
                         <label for="flexInput">Flexibility:</label>
                         <input type="text" name="flex" id="flexInput" class="validate" data-length="32" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <select id="subjectInput" name="crafter" required>
+                            <option value="" disabled selected>Choose a wandmaker we sponser at Ollivander's</option>
+                            <% for (let i = 0; i < crafters_list.length; i++) { %>
+                                <option value=<%=crafters_list[i].crafter_id %>><%= crafters_list[i].name %></option>
+                            <% } %>
+                        </select>
+                        <label for="subjectInput">Crafter:</label>
                     </div>
                 </div>
                 <div class = "row">

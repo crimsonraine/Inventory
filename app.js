@@ -99,7 +99,15 @@ app.get("/inventory", requiresAuth(), (req, res) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
         else {
-            res.render('inventory', { results });
+            // res.render('inventory', { results }); former before dropdown
+            db.execute(read_crafters_all_sql, (error2, results2) => {
+                if (error2)
+                    res.status(500).send(error2);
+                else {
+                    let data = {wands_list: results, crafters_list: results2};
+                    res.render('inventory', data); 
+                }
+            });
         }
     });
 });
@@ -155,12 +163,12 @@ app.get("/inventory/det/:id/delete", requiresAuth(), (req, res) => {
 // define a route for item Create
 const create_item_sql = `
 INSERT INTO wands 
-    (core, wood, length, flexibility, notes, userid)
+    (core, wood, length, flexibility, notes, crafter_id, userid)
 VALUES 
-    (?, ?, ?, ?, ?, ?);
+    (?, ?, ?, ?, ?, ?, ?);
 `
 app.post("/inventory", requiresAuth(), (req, res) => {
-    db.execute(create_item_sql, [req.body.core, req.body.wood, req.body.length, req.body.flex, req.body.notes, req.oidc.user.email], (error, results) => {
+    db.execute(create_item_sql, [req.body.core, req.body.wood, req.body.length, req.body.flex, req.body.notes, req.body.crafter, req.oidc.user.email], (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
         else {
