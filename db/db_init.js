@@ -107,7 +107,7 @@ const create_stuff_table_sql = `
         CONSTRAINT crafter_id
             FOREIGN KEY (crafter_id)
             REFERENCES crafters (crafter_id)
-            ON DELETE RESTRICT
+            ON DELETE CASCADE
             ON UPDATE CASCADE
     );
 `
