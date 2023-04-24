@@ -45,12 +45,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (let i = 0; i < results.length; i++) { %>
+                    <% for (let i = 0; i < crafter_display.length; i++) { %>
                         <tr>
-                            <td><%= results[i].name %></td>
-                            <td><%= results[i].country_name %></td>
+                            <td><%= crafter_display[i].name %></td>
+                            <td><%= crafter_display[i].country_name %></td>
                             <td>
-                                <a class="btn-small waves-effect waves-light red darken-4" href="/crafters/<%= results[i].crafter_id %>/delete" style = "color:black">
+                                <a class="btn-small waves-effect waves-light red darken-4" href="/crafters/<%= crafter_display[i].crafter_id %>/delete" style = "color:black">
                                     <i class="material-icons right">delete</i>
                                     Deleto
                                 </a>
@@ -73,10 +73,14 @@
                         <label for="woodInput">Last Name:</label>
                         <input type="text" name="name2" id="lastNameInput" class="validate" data-length="32" required>
                     </div>
-                    <div class="input-field col s6">
-                        <label for="lengthInput">Country</label>
-                        <input type="number" name="country" id="lengthInput" value=9 required>
-                        <!-- 9 inches is rather within the range of wand lengths in HP -->
+                    <div class="input-field col s12 center-align">
+                        <select id="countryInput" name="country" required>
+                            <option value="" disabled selected>Country of Practice:</option>
+                            <% for (let i = 0; i < country_list.length; i++) { %>
+                                <option value=<%=country_list[i].country_id %>><%= country_list[i].country_name %></option>
+                            <% } %>
+                        </select>
+                        <label for="crafterInput">Country:</label>
                     </div>
                 </div>
                 <button class="btn waves-effect waves-light teal darken-4" type="submit">

@@ -73,6 +73,13 @@ app.get("/", (req, res) => {
     res.render('index');
 });
 
+const read_countries_all_sql = `
+    SELECT 
+        country_id, country_name
+    FROM
+        countries
+`
+
 // define a route for the wand inventory page
 const read_crafters_page_sql = `
     SELECT 
@@ -86,7 +93,6 @@ const read_crafters_page_sql = `
         addid is NULL
     OR
         addid = ?
-    GROUP BY crafters.country_id
     ORDER BY crafters.crafter_last_name;
 `
 app.get("/crafters", requiresAuth(), (req, res) => {
@@ -94,10 +100,57 @@ app.get("/crafters", requiresAuth(), (req, res) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
         else {
-            res.render('crafters', { results });
+            db.execute(read_countries_all_sql, (error2, results2) => {
+                if (error2)
+                    res.status(500).send(error2);
+                else {
+                    let data = {crafter_display: results, country_list: results2};
+                    res.render('crafters', data); 
+                }
+            });
         }
     });
 });
+
+// unpartner with crafter
+const unpartner_crafter = `
+    DELETE 
+    FROM
+        crafters
+    WHERE
+        crafter_id = ?
+    AND
+        (addid is NULL
+    OR
+        addid = ?)
+`
+app.get("/crafters/:id/delete", requiresAuth(), (req, res) => {
+    db.execute(unpartner_crafter, [req.params.id, req.oidc.user.email], (error, results) => {
+        if (error)
+            res.status(500).send(error); //Internal Server Error
+        else {
+            res.redirect("/crafters");
+        }
+    });
+})
+
+// define a route for item Create
+const partner_crafter = `
+INSERT INTO crafters
+    (crafter_first_name, crafter_last_name, country_id, addid)
+VALUES 
+    (?, ?, ?, ?);
+`
+app.post("/crafters", requiresAuth(), (req, res) => {
+    db.execute(partner_crafter, [req.body.name1, req.body.name2, req.body.country, req.oidc.user.email], (error, results) => {
+        if (error)
+            res.status(500).send(error); //Internal Server Error
+        else {
+            //results.insertId has the primary key (id) of the newly inserted element.
+            res.redirect(`/crafters`);
+        }
+    });
+})
 
 const read_crafters_all_sql = `
     SELECT 
