@@ -49,12 +49,15 @@
                         <tr>
                             <td><%= crafter_display[i].name %></td>
                             <td><%= crafter_display[i].country_name %></td>
-                            <td>
-                                <a class="btn-small waves-effect waves-light red darken-4" href="/crafters/<%= crafter_display[i].crafter_id %>/delete" style = "color:black">
-                                    <i class="material-icons right">delete</i>
-                                    Deleto
-                                </a>
-                            </td>
+                            <% // only appears if you have added the crafter
+                            if(user_info.oidc.user.email == crafter_display[i].addid || crafter_display[i].addid == null){ %>
+                                <td>
+                                    <a class="btn-small waves-effect waves-light red darken-4" href="/crafters/<%= crafter_display[i].crafter_id %>/delete" style = "color:black">
+                                        <i class="material-icons right">delete</i>
+                                        Deleto
+                                    </a>
+                                </td>
+                            <% } %>
                         </tr>
                     <% } %>
                 </tbody>
@@ -63,18 +66,18 @@
 
         <div class="section" id="craftersAdd">
             <h1 class="center card-panel blue-grey lighten-5">Bring in new crafter:</h1>
-            <form method="post" action="/inventory"> 
+            <form method="post" action="/crafters"> 
                 <div class="row">
                     <div class="input-field col s6">
                         <label for="coreInput">First Name:</label>
-                        <input type="text" name="name1" id="firstNameInput" class="validate" data-length="32" required>
+                        <input type="text" name="firstNameInput" id="firstNameInput" class="validate" data-length="32" required>
                     </div>
                     <div class="input-field col s6">
                         <label for="woodInput">Last Name:</label>
-                        <input type="text" name="name2" id="lastNameInput" class="validate" data-length="32" required>
+                        <input type="text" name="lastNameInput" id="lastNameInput" class="validate" data-length="32" required>
                     </div>
                     <div class="input-field col s12 center-align">
-                        <select id="countryInput" name="country" required>
+                        <select id="countryInput" name="countryInput" required>
                             <option value="" disabled selected>Country of Practice:</option>
                             <% for (let i = 0; i < country_list.length; i++) { %>
                                 <option value=<%=country_list[i].country_id %>><%= country_list[i].country_name %></option>
@@ -84,7 +87,6 @@
                     </div>
                 </div>
                 <button class="btn waves-effect waves-light teal darken-4" type="submit">
-                    <!-- <i class="material-icons right">send</i> -->
                     Say Incantation
                     <i class="material-symbols-outlined right">
                         group_add

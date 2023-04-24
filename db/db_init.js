@@ -27,6 +27,7 @@ const insert_countries_table_sql = `
 db.execute(insert_countries_table_sql, ['England']);
 db.execute(insert_countries_table_sql, ['Ireland']);
 db.execute(insert_countries_table_sql, ['United States of America']);
+db.execute(insert_countries_table_sql, ['Norway']);
 
 const read_countries_table_sql = "SELECT * FROM countries";
 

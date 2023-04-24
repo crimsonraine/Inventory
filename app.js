@@ -78,6 +78,7 @@ const read_countries_all_sql = `
         country_id, country_name
     FROM
         countries
+    ORDER BY country_name;
 `
 
 // define a route for the wand inventory page
@@ -104,7 +105,7 @@ app.get("/crafters", requiresAuth(), (req, res) => {
                 if (error2)
                     res.status(500).send(error2);
                 else {
-                    let data = {crafter_display: results, country_list: results2};
+                    let data = {crafter_display: results, country_list: results2, user_info: req};
                     res.render('crafters', data); 
                 }
             });
@@ -142,7 +143,7 @@ VALUES
     (?, ?, ?, ?);
 `
 app.post("/crafters", requiresAuth(), (req, res) => {
-    db.execute(partner_crafter, [req.body.name1, req.body.name2, req.body.country, req.oidc.user.email], (error, results) => {
+    db.execute(partner_crafter, [req.body.firstNameInput, req.body.lastNameInput, req.body.countryInput, req.oidc.user.email], (error, results) => {
         if (error)
             res.status(500).send(error); //Internal Server Error
         else {
