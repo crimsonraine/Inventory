@@ -73,6 +73,32 @@ app.get("/", (req, res) => {
     res.render('index');
 });
 
+// define a route for the wand inventory page
+const read_crafters_page_sql = `
+    SELECT 
+        crafter_id, CONCAT(crafter_first_name, ' ', crafter_last_name) AS name,
+        crafters.country_id, country_name, addid
+    FROM
+        crafters
+    JOIN countries
+        ON crafters.country_id = countries.country_id
+    WHERE
+        addid is NULL
+    OR
+        addid = ?
+    GROUP BY crafters.country_id
+    ORDER BY crafters.crafter_last_name;
+`
+app.get("/crafters", requiresAuth(), (req, res) => {
+    db.execute(read_crafters_page_sql, [req.oidc.user.email], (error, results) => {
+        if (error)
+            res.status(500).send(error); //Internal Server Error
+        else {
+            res.render('crafters', { results });
+        }
+    });
+});
+
 const read_crafters_all_sql = `
     SELECT 
         crafter_id, CONCAT(crafter_first_name, ' ', crafter_last_name) AS name

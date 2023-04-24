@@ -76,7 +76,7 @@
                             <td><%= results[i].name %></td>
                             <td><%= results[i].country_name %></td>
                             <td>
-                                <a class="btn-small waves-effect waves-light red darken-4" href="/inventory/det/<%= wands_list[i].id %>/delete" style = "color:black">
+                                <a class="btn-small waves-effect waves-light red darken-4" href="/crafters/<%= results[i].crafter_id %>/delete" style = "color:black">
                                     <i class="material-icons right">delete</i>
                                     Deleto
                                 </a>
@@ -93,27 +93,16 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <label for="coreInput">First Name:</label>
-                        <input type="text" name="core" id="coreInput" class="validate" data-length="32" required>
+                        <input type="text" name="name1" id="firstNameInput" class="validate" data-length="32" required>
                     </div>
                     <div class="input-field col s6">
                         <label for="woodInput">Last Name:</label>
-                        <input type="text" name="wood" id="woodInput" class="validate" data-length="32" required>
+                        <input type="text" name="name2" id="lastNameInput" class="validate" data-length="32" required>
                     </div>
                     <div class="input-field col s6">
                         <label for="lengthInput">Country</label>
-                        <input type="number" name="length" id="lengthInput" value=9 required>
+                        <input type="number" name="country" id="lengthInput" value=9 required>
                         <!-- 9 inches is rather within the range of wand lengths in HP -->
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12 center-align">
-                        <select id="crafterInput" name="crafter" required>
-                            <option value="" disabled selected>Choose a wandmaker we sponser at Ollivander's</option>
-                            <% for (let i = 0; i < crafters_list.length; i++) { %>
-                                <option value=<%=crafters_list[i].crafter_id %>><%= crafters_list[i].name %></option>
-                            <% } %>
-                        </select>
-                        <label for="crafterInput">Crafter:</label>
                     </div>
                 </div>
                 <button class="btn waves-effect waves-light teal darken-4" type="submit">
