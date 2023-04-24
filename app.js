@@ -155,7 +155,7 @@ app.post("/crafters", requiresAuth(), (req, res) => {
 
 const read_crafters_all_sql = `
     SELECT 
-        crafter_id, CONCAT(crafter_first_name, ' ', crafter_last_name) AS name
+        crafter_id, CONCAT(crafter_first_name, ' ', crafter_last_name) AS name, addid
     FROM
         crafters
 `
@@ -184,7 +184,7 @@ app.get("/inventory", requiresAuth(), (req, res) => {
                 if (error2)
                     res.status(500).send(error2);
                 else {
-                    let data = {wands_list: results, crafters_list: results2};
+                    let data = {wands_list: results, crafters_list: results2, user_info: req};
                     res.render('inventory', data); 
                 }
             });

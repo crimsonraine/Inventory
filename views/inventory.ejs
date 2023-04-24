@@ -100,7 +100,9 @@
                         <select id="crafterInput" name="crafter" required>
                             <option value="" disabled selected>Choose a wandmaker we sponser at Ollivander's</option>
                             <% for (let i = 0; i < crafters_list.length; i++) { %>
-                                <option value=<%=crafters_list[i].crafter_id %>><%= crafters_list[i].name %></option>
+                                <% if(crafters_list[i].addid == null || user_info.oidc.user.email == crafters_list[i].addid) { %>
+                                    <option value=<%=crafters_list[i].crafter_id %>><%= crafters_list[i].name %></option>
+                                <% } %>
                             <% } %>
                         </select>
                         <label for="crafterInput">Crafter:</label>

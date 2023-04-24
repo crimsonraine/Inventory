@@ -49,8 +49,8 @@
                         <tr>
                             <td><%= crafter_display[i].name %></td>
                             <td><%= crafter_display[i].country_name %></td>
-                            <% // only appears if you have added the crafter
-                            if(user_info.oidc.user.email == crafter_display[i].addid || crafter_display[i].addid == null){ %>
+                            <% // only appears if crafter is associated with you
+                            if(user_info.oidc.user.email == crafter_display[i].addid) { %>
                                 <td>
                                     <a class="btn-small waves-effect waves-light red darken-4" href="/crafters/<%= crafter_display[i].crafter_id %>/delete" style = "color:black">
                                         <i class="material-icons right">delete</i>
