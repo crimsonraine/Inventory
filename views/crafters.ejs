@@ -29,34 +29,8 @@
 </head>
 
 <body>
-    <!-- Nav bar -->
     <header>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="/" class="brand-logo">Ollivander's</a>
-                <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <ul id="desktop-nav" class="right hide-on-med-and-down">
-                    <li><a href="/"><i class="material-icons left">location_city</i>storefront</a></li>
-                    <li><a href="/inventory"><i class="material-icons left">dashboard</i>shelves</a></li>
-                    <% if (isLoggedIn) { %>
-                        <li><a href="/profile"><i class="material-icons left">person</i> Hello, <%=user.name%></a> </li>
-                        <li><a href="/logout" class="btn teal darken-4 vertical-center">Logout</a></li>                        
-                    <% } else { %>
-                        <li><a href="/login" class="btn red darken-4 vertical-center">Login</a></li>
-                    <% } %>
-                </ul>
-            </div>
-        </nav>
-        <ul id="mobile-nav" class="sidenav">
-             <li><a href="/"><i class="material-icons left">location_city</i>storefront</a></li>
-             <li><a href="/inventory"><i class="material-icons left">dashboard</i>shelves</a></li>
-             <% if (isLoggedIn) { %>
-                <li><a href="/profile"><i class="material-icons left">person</i> Hello, <%=user.name%></a> </li>
-                <li><a href="/logout" class="btn teal darken-4 vertical-center">Logout</a></li>                        
-            <% } else { %>
-                <li><a href="/login" class="btn red darken-4 vertical-center">Login</a></li>
-            <% } %>
-        </ul>
+        <%- include('header.ejs') %>
     </header>
 
     <!-- Actual page content! -->
@@ -109,7 +83,7 @@
                     <!-- <i class="material-icons right">send</i> -->
                     Say Incantation
                     <i class="material-symbols-outlined right">
-                        bolt
+                        group_add
                     </i>
                 </button>
             </form>
