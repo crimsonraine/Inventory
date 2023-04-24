@@ -46,7 +46,7 @@ const create_crafters_table_sql = `
         crafter_first_name VARCHAR(45) NULL,
         crafter_last_name VARCHAR(45) NOT NULL,
         country_id INT NULL,
-        userid VARCHAR(50) NULL,
+        addid VARCHAR(50) NULL,
         PRIMARY KEY (crafter_id),
         INDEX country_id_idx (country_id ASC),
         CONSTRAINT country_id

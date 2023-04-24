@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet our Partner Wandmakers</title>
+    <link rel="shortcut icon" type="image/jpg" href="/favicon.ico"/>
+
+    <!-- Materialize CSS and Icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link rel="stylesheet" href="/stylesheets/warehouse.css">
+    <!-- icon -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Passions+Conflict&display=swap" rel="stylesheet">
+    
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+    <!-- Nav bar -->
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo">Ollivander's</a>
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="desktop-nav" class="right hide-on-med-and-down">
+                    <li><a href="/"><i class="material-icons left">location_city</i>storefront</a></li>
+                    <li><a href="/inventory"><i class="material-icons left">dashboard</i>shelves</a></li>
+                    <% if (isLoggedIn) { %>
+                        <li><a href="/profile"><i class="material-icons left">person</i> Hello, <%=user.name%></a> </li>
+                        <li><a href="/logout" class="btn teal darken-4 vertical-center">Logout</a></li>                        
+                    <% } else { %>
+                        <li><a href="/login" class="btn red darken-4 vertical-center">Login</a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </nav>
+        <ul id="mobile-nav" class="sidenav">
+             <li><a href="/"><i class="material-icons left">location_city</i>storefront</a></li>
+             <li><a href="/inventory"><i class="material-icons left">dashboard</i>shelves</a></li>
+             <% if (isLoggedIn) { %>
+                <li><a href="/profile"><i class="material-icons left">person</i> Hello, <%=user.name%></a> </li>
+                <li><a href="/logout" class="btn teal darken-4 vertical-center">Logout</a></li>                        
+            <% } else { %>
+                <li><a href="/login" class="btn red darken-4 vertical-center">Login</a></li>
+            <% } %>
+        </ul>
+    </header>
+
+    <!-- Actual page content! -->
+    <div class="container ">
+        <div class="section" id="crafterList">
+            <h1 class="center card-panel blue-grey lighten-5">Meet our Associate Wandcrafters</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Based Out Of</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let i = 0; i < results.length; i++) { %>
+                        <tr>
+                            <td><%= results[i].name %></td>
+                            <td><%= results[i].country_name %></td>
+                            <td>
+                                <a class="btn-small waves-effect waves-light red darken-4" href="/inventory/det/<%= wands_list[i].id %>/delete" style = "color:black">
+                                    <i class="material-icons right">delete</i>
+                                    Deleto
+                                </a>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section" id="craftersAdd">
+            <h1 class="center card-panel blue-grey lighten-5">Bring in new crafter:</h1>
+            <form method="post" action="/inventory"> 
+                <div class="row">
+                    <div class="input-field col s6">
+                        <label for="coreInput">First Name:</label>
+                        <input type="text" name="core" id="coreInput" class="validate" data-length="32" required>
+                    </div>
+                    <div class="input-field col s6">
+                        <label for="woodInput">Last Name:</label>
+                        <input type="text" name="wood" id="woodInput" class="validate" data-length="32" required>
+                    </div>
+                    <div class="input-field col s6">
+                        <label for="lengthInput">Country</label>
+                        <input type="number" name="length" id="lengthInput" value=9 required>
+                        <!-- 9 inches is rather within the range of wand lengths in HP -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 center-align">
+                        <select id="crafterInput" name="crafter" required>
+                            <option value="" disabled selected>Choose a wandmaker we sponser at Ollivander's</option>
+                            <% for (let i = 0; i < crafters_list.length; i++) { %>
+                                <option value=<%=crafters_list[i].crafter_id %>><%= crafters_list[i].name %></option>
+                            <% } %>
+                        </select>
+                        <label for="crafterInput">Crafter:</label>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light teal darken-4" type="submit">
+                    <!-- <i class="material-icons right">send</i> -->
+                    Say Incantation
+                    <i class="material-symbols-outlined right">
+                        bolt
+                    </i>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="center">
+        <img src="/images/shop.jpg" alt="Ollivander's Shop Pic" title="Wands on Shelves" width='60%' height='80%'>
+        <br>
+        <a class="btn vertical-center teal darken-4" href="/">
+            Back to Shop Front!
+            <i class="material-symbols-outlined right">
+                bolt
+            </i>
+        </a>
+    </div>
+
+    <!-- Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- initialize Materialize elements -->
+    <script src = "/autoinit.js"></script>
+</body>
+
+</html>
