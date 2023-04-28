@@ -6,6 +6,8 @@ const { requiresAuth } = require('express-openid-connect');
 //set up the server
 const express = require("express");
 const helmet = require("helmet");
+const path = require("path");
+const fs = require("fs");
 const app = express();
 
 const dotenv = require('dotenv');
@@ -52,14 +54,14 @@ app.get('/profile', requiresAuth(), (req, res) => {
 const port = process.env.PORT || 8080;
 
 // Configure Express to use EJS
-app.set("views", __dirname + "/views");
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 // define middleware that logs all incoming requests
 // express applies middleware and handlers 
 app.use(logger("dev"));
 // define middleware that serves static resources in the public directory
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'public'))); // can be janky
 // Configure Express to parse URL-encoded POST request bodies (traditional forms)
 app.use(express.urlencoded({ extended: false }));
 
